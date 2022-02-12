@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
       completed: false,
     },
   ];
+
+  const [taskList, setTaskList] = useState(tasks);
+
   return <div className='App'></div>;
 }
 
