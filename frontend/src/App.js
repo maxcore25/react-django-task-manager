@@ -1,6 +1,32 @@
 import './App.css';
 
 function App() {
+  const tasks = [
+    {
+      id: 1,
+      title: 'Go for shopping',
+      description: 'Buy new sport clothes',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Go for shopping2',
+      description: 'Buy new sport clothes',
+      completed: false,
+    },
+    {
+      id: 3,
+      title: 'Go for shopping3',
+      description: 'Buy new sport clothes',
+      completed: false,
+    },
+    {
+      id: 4,
+      title: 'Go for shopping4',
+      description: 'Buy new sport clothes',
+      completed: false,
+    },
+  ];
   return <div className='App'></div>;
 }
 
