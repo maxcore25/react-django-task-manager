@@ -30,12 +30,50 @@ function App() {
   ];
 
   const [taskList, setTaskList] = useState(tasks);
+  const [viewCompleted, setViewCompleted] = useState(false);
 
   return (
     <div className='App'>
-      <div className='my-5'>
-        <span></span>
-      </div>
+      <main className='content'>
+        <h1 className='text-black text-uppercase text-center my-4'>
+          Task Manager
+        </h1>
+        <div className='row '>
+          <div className='col-md-6 col-sm-10 mx-auto p-0'>
+            <div className='card p-3'>
+              <div className=''>
+                <button onClick={this.createItem} className='btn btn-primary'>
+                  Add task
+                </button>
+              </div>
+              {this.renderTabList()}
+              <ul className='list-group list-group-flush'>
+                {this.renderItems()}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {this.state.modal ? (
+          <div></div>
+        ) : // <Modal
+        //   activeItem={this.state.activeItem}
+        //   toggle={this.toggle}
+        //   onSave={this.handleSubmit}
+        // />
+        null}
+      </main>
+      {/* <div className='my-5 tab-list'>
+        <span
+          onClick={() => setViewCompleted(true)}
+          className={viewCompleted ? 'active' : ''}>
+          Completed
+        </span>
+        <span
+          onClick={() => setViewCompleted(false)}
+          className={viewCompleted ? '' : 'active'}>
+          Uncompleted
+        </span>
+      </div> */}
     </div>
   );
 }
