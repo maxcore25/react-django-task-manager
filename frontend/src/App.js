@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Modal from './components/Modal/Modal';
 
 function App() {
   const tasks = [
@@ -31,6 +32,7 @@ function App() {
 
   const [taskList, setTaskList] = useState(tasks);
   const [viewCompleted, setViewCompleted] = useState(false);
+  const [modalIsActive, setModalIsActive] = useState(false);
 
   return (
     <div className='App'>
@@ -42,38 +44,42 @@ function App() {
           <div className='col-md-6 col-sm-10 mx-auto p-0'>
             <div className='card p-3'>
               <div className=''>
-                <button onClick={this.createItem} className='btn btn-primary'>
+                <button
+                  onClick={() => setModalIsActive(false)}
+                  className='btn btn-primary'>
                   Add task
                 </button>
               </div>
-              {this.renderTabList()}
+              <div className='my-5 tab-list'>
+                <span
+                  onClick={() => setViewCompleted(true)}
+                  className={viewCompleted ? 'active' : ''}>
+                  Completed
+                </span>
+                <span
+                  onClick={() => setViewCompleted(false)}
+                  className={viewCompleted ? '' : 'active'}>
+                  Uncompleted
+                </span>
+              </div>
               <ul className='list-group list-group-flush'>
-                {taskList.filter(item => item.completed === viewCompleted)}
+                {taskList
+                  .filter(item => item.completed === viewCompleted)
+                  .map(item => (
+                    <div key={item.id}>{item.title}</div>
+                  ))}
               </ul>
             </div>
           </div>
         </div>
-        {this.state.modal ? (
-          <div></div>
-        ) : // <Modal
-        //   activeItem={this.state.activeItem}
-        //   toggle={this.toggle}
-        //   onSave={this.handleSubmit}
-        // />
-        null}
+        {modalIsActive ? (
+          <Modal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+          />
+        ) : null}
       </main>
-      {/* <div className='my-5 tab-list'>
-        <span
-          onClick={() => setViewCompleted(true)}
-          className={viewCompleted ? 'active' : ''}>
-          Completed
-        </span>
-        <span
-          onClick={() => setViewCompleted(false)}
-          className={viewCompleted ? '' : 'active'}>
-          Uncompleted
-        </span>
-      </div> */}
     </div>
   );
 }
