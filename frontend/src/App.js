@@ -48,7 +48,7 @@ function App() {
               </div>
               {this.renderTabList()}
               <ul className='list-group list-group-flush'>
-                {this.renderItems()}
+                {taskList.filter(item => item.completed === viewCompleted)}
               </ul>
             </div>
           </div>
